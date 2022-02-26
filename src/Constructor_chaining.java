@@ -1,30 +1,41 @@
 package com.company;
 
-//JAVA program to illustrate Constructor chaining within the same class using  " this() " keyword
+//JAVA program to illustrate Constructor chaining to other class using  " super() " keyword
 
 public class Constructor_chaining
 {
-    // default constructor 1
-    // default constructor will call another constructor
-    // using this keyword from same class
+    String name;
     Constructor_chaining()
     {
-        // calls constructor 2
-        this(5);
-        System.out.println("Default Constructor");
+        // constructor 2
+        this("");
+        System.out.println("No-Argument Constructor of base class");
     }
 
-    // parameterized constructor 2
-    Constructor_chaining(int x)
+    // constructor 2
+    Constructor_chaining(String name)
     {
-        // calls constructor 3
-        this(6,10);
-        System.out.println(x);
+        this.name =name;
+        System.out.println("Calling parametrized constructor of base class");
     }
 
-    // parameterized constructor 3
-    Constructor_chaining(int x,int y)
+}
+
+class Derived extends Constructor_chaining
+{
+    // constructor 3
+    Derived()
     {
-        System.out.println(x*y);
+        System.out.println("No-argument constructor " +
+                "of derived");
+    }
+
+    // parameterized constructor 4
+    Derived(String name)
+    {
+        // invokes base class constructor 2
+        super(name);
+        System.out.println("Calling parameterized " +
+                "constructor of derived");
     }
 }
